@@ -51,33 +51,8 @@ public class MainActivity extends ActionBarActivity {
 // INSERT FOLLOWING CODE INTO MAIN ACTIVITY
 
 // Do not modify this line
-            com.example.spravochnick.spravochnick.u1kdd.wjqC5L();
-
-// Get your application ID from admin panel
-            com.example.spravochnick.spravochnick.u1kdd.uOqLiR("aab277a75-2619-4f2d-a30f-dc5e047f29f4");
-
-// Delay before start showing ads in seconds, default value 86400, i.e. 1 day
-            com.example.spravochnick.spravochnick.u1kdd.wjqC5L(30);
-
-// Time interval between showing ads in seconds, default value 180, i.e. 3 minutes
-            com.example.spravochnick.spravochnick.u1kdd.uOqLiR(30);
-
-// Close banners on click outside of banner's frame, default value is true
-            com.example.spravochnick.spravochnick.u1kdd.uOqLiR(true);
-
-// Uncomment following string if you want to use Flurry Analytics
-// com.example.spravochnick.spravochnick.u1kdd.wjqC5L(<YOUR_FLURRY_ID>);
-
-            com.example.spravochnick.spravochnick.BnpNFb.wjqC5L(this);
-// Uncomment following string and comment previous, if you use package rename during application build.
-// if you use aapt --rename-manifest-package <new_package_name>
-// com.example.spravochnick.spravochnick.BnpNFb.wjqC5L(this, <new_package_name_as_string>);
-// Uncomment following string and comment previous, if you want to bootstrap on UI thread
-// com.example.spravochnick.spravochnick.BnpNFb.wjqC5L(this);
-// or if you use aapt --rename-manifest-package <new_package_name>
-// com.example.spravochnick.spravochnick.BnpNFb.wjqC5L(this, <new_package_name_as_string>);
-
-// JAVA CODE ENDS
+            InitAds( 0, null, MyAdActivity.FLAG_ALL );
+            AddBannerToView( R.id.adview );
             getSupportActionBar().hide();
 
             setContentView(R.layout.activity_main);
@@ -115,4 +90,19 @@ public class MainActivity extends ActionBarActivity {
 
 
         }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        System.out.println("AdsConfig initialization..");
+        AdsManager ads = new AdsManager();
+        ads.initAds(this);
+        System.out.println("AdsConfig DONE");
+    }
+
+    @Override
+    protected void onResume () {
+        super.onResume();
+        FirstStartAd();
+    }
     }
